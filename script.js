@@ -60,7 +60,7 @@ function checkingforspecialcharacters() {
 // The function below will determine whether to include uppercase characters or not for the password being generated
 
 function checkingforuppercasecharacters() {
-  UppercaseCharactersyesorno = prompt("Do you wish to insert any special characters for this password? \n (Yes or no)");
+  UppercaseCharactersyesorno = prompt("Do you wish to insert any upper case characters for this password? \n (Yes or no)");
   UppercaseCharactersyesorno = UppercaseCharactersyesorno.toLowerCase();
 
   if (UppercaseCharactersyesorno === null || UppercaseCharactersyesorno === "") {
@@ -85,7 +85,7 @@ function checkingforuppercasecharacters() {
 // The function below will determine whether to include number characters or not for the password being generated
 
 function checkingfornumbercharacters() {
-  NumberCharactersyesorno = prompt("Do you wish to insert any special characters for this password? \n (Yes or no)");
+  NumberCharactersyesorno = prompt("Do you wish to insert any number characters for this password? \n (Yes or no)");
   NumberCharactersyesorno = NumberCharactersyesorno.toLowerCase();
 
   if (NumberCharactersyesorno === null || NumberCharactersyesorno === "") {
@@ -109,14 +109,54 @@ function checkingfornumbercharacters() {
 
 // The function below will determine the password based on the selections made from the user
 
-function generatePassword {
+function generatePassword() {
   lengthgenerator();
+  console.log(LengthofPassword);
+  checkingforspecialcharacters();
+  console.log(SpecialCharactersyesorno);
+  checkingforuppercasecharacters();
+  console.log(UppercaseCharactersyesorno);
+  checkingfornumbercharacters();
+  console.log(NumberCharactersyesorno);
 
+  var givenLCCcharacters = LCCharacters;
+  var passwordfinal = "";
+
+  if (SpecialCharactersyesorno && UppercaseCharactersyesorno && NumberCharactersyesorno) {
+    givenLCCcharacters += UCCharacters + SpecialCharacters + NumberCharacters;
+  }
+  else if (SpecialCharactersyesorno && UppercaseCharactersyesorno) {
+    givenLCCcharacters += SpecialCharacters + UCCharacters;
+  }
+  else if (SpecialCharactersyesorno && NumberCharactersyesorno) {
+    givenLCCcharacters += SpecialCharacters + NumberCharacters;
+  }
+  else if (UppercaseCharactersyesorno && NumberCharactersyesorno) {
+    givenLCCcharacters += UCCharacters + NumberCharacters;
+  }
+  else if (SpecialCharactersyesorno) {
+    givenLCCcharacters += SpecialCharacters;
+  }
+  else if (UppercaseCharactersyesorno) {
+    givenLCCcharacters += UCCharacters;
+  }
+   else if (NumberCharactersyesorno) {
+    givenLCCcharacters += NumberCharacters;
+   }
+   else {
+    givenLCCcharacters;
+   }
+
+   for(var i = 0; i < LengthofPassword; i++) {
+    passwordfinal += givenLCCcharacters.charAt(Math.floor(Math.random() * givenLCCcharacters.length));
+   }
+   return passwordfinal;
 }
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var password = "";
+  password = generatePassword();
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
 }
