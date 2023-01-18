@@ -18,7 +18,7 @@ Deployed Website Link: <a href="https://pguerra98.github.io/password-generator-p
 
 ## Credits
 
-Google Images (for project backgrounds)
+GA Tech Bootcamp challenge 03 starter code
 
 ## License
 
